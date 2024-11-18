@@ -124,3 +124,11 @@ with viewer_col:
 with chat_col:
     with st.container(border=True):
         chat()
+
+# Add a feedback button at the bottom of the app
+st.markdown("---")
+st.markdown(
+    """
+    If you have feedback, feel free to [email us](mailto:feedback@example.com).
+    """
+)
