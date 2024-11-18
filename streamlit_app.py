@@ -25,13 +25,12 @@ def resume_viewer():
     if "resume_file" in st.session_state:
         resume_file = st.session_state.resume_file
         bytes_data = resume_file.getvalue()
-        match resume_file.type:
-            case "text/plain":
-                content = bytes_data.decode("utf-8")
-                st.session_state.resume_text = content
-                st.text(content)
-            case _:
-                raise ValueError("unknown file type uploaded")
+        if resume_file.type ==  "text/plain":
+            content = bytes_data.decode("utf-8")
+            st.session_state.resume_text = content
+            st.text(content)
+        else:
+            raise ValueError("unknown file type uploaded")
         if st.button("Upload new résumé"):
             upload_resume()
     else:
