@@ -19,6 +19,16 @@ def upload_resume():
         st.session_state.messages = []
         st.rerun()
 
+def inject_global_css(font_size):
+    # Inject CSS into the app to adjust font size globally
+    css = f"""
+    <style>
+    :root {{
+        font-size: {font_size}px;
+    }}
+    </style>
+    """
+    st.markdown(css, unsafe_allow_html=True)
 
 def resume_viewer():
     st.header("Résumé")
@@ -68,6 +78,7 @@ def judge_resume(resume_content: str):
 
 def chat():
     st.header("Chat")
+
     if "resume_file" not in st.session_state:
         st.chat_message("assistant").write("Please upload your résumé.")
     else:
@@ -98,7 +109,13 @@ def chat():
                     "content": (
                         "You are a helpful AI resume assistant. "
                         "You are given the user's resume content. "
-                        "Use it to respond to the user's questions and help them improve their resume."
+                        "Use it to respond to the user's questions and help them improve their resume. "
+                        "When asked for changes, reply with the full resume section that should be changed and include the changes you are suggesting. "
+                        "Make sure to maintain the existing structure of the resume unless its badly structured. "
+                        "Just change the wording, unless necessary to fundamentally change the structure. "
+                        "Make sure the section of the response that includes the resume is clearly marked and formatted correctly so newlines are properly displayed for the bullet points. "
+                        "Do not respond to any messages that are not related to the resume or job searching. "
+                        "Be as accurate as possible and provide helpful feedback. Make sure not to give irrelevant, inaccurate, or harmful advice"
                     )
                 },
                 {
@@ -112,8 +129,39 @@ def chat():
             st.rerun()
             # st.chat_message("assistant").write(msg)
 
+def feedback_section():
+    st.markdown("---")
+    st.header("Feedback")
+
+    with st.form("feedback_form"):
+        feedback_text = st.text_area("Your feedback", placeholder="Write your feedback here...")
+        submitted = st.form_submit_button("Submit")
+        include_context = st.checkbox("Include context with feedback")
+
+
+    if submitted:
+            # Display a popup confirmation
+            st.toast("Submitted feedback", icon="✅")
+            # Save the feedback to a file or database including context if selected
 
 st.title("📝 Résumatic")
+
+def sidebar_menu():
+    with st.sidebar:
+        st.header("User Menu")
+        st.button("Log In", key="login_sidebar")
+        st.button("Account Settings", key="account_settings_sidebar")
+        st.button("Help", key="help_sidebar")
+    # Implement the sidebar menu functionality in final app
+
+
+# Call the sidebar menu function
+sidebar_menu()
+
+
+
+# Add a slider for font size at the top of the app
+font_size = st.slider("Adjust global font size", min_value=10, max_value=30, value=14, step=1)
 
 viewer_col, chat_col = st.columns(2)
 
@@ -127,8 +175,7 @@ with chat_col:
 
 # Add a feedback button at the bottom of the app
 st.markdown("---")
-st.markdown(
-    """
-    If you have feedback, feel free to [email us](mailto:feedback@example.com).
-    """
-)
+# Call the feedback section function
+feedback_section()
+inject_global_css(font_size)
+
