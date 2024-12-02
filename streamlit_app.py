@@ -6,6 +6,7 @@ from components.chat import chat
 from utils.css import inject_global_css
 
 st.set_page_config(layout="wide")
+st.title("📝 Résumatic")
 
 # Sidebar menu
 sidebar_menu()
