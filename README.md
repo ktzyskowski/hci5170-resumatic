@@ -3,7 +3,7 @@
 ### Install
 
 ```shell
-pip install -U streamlit openai
+pip install -U streamlit openai streamlit_pdf_viewer pypdf
 ```
 
 You must also create a file `.streamlit/secrets.toml` file with the following information:
@@ -15,7 +15,7 @@ openai_api_key = "<YOUR OPENAI API KEY>"
 ### Usage
 
 ```shell
-streamlit run streamlit_app.py
+streamlit run main.py
 ```
 
 ### Citations
