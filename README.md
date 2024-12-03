@@ -15,5 +15,5 @@ openai_api_key = "<YOUR OPENAI API KEY>"
 ### Usage
 
 ```shell
-streamlit run streamlit_app.py
+streamlit run main.py
 ```
