@@ -1,6 +1,6 @@
 import streamlit as st
 
-from resumatic.streamlit.components import editor, feedback, options_expander, upload_resume_modal, sidebar
+from resumatic.streamlit.components import editor, feedback, upload_resume_modal, sidebar
 
 
 def app():
