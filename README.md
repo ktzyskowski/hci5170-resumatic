@@ -15,5 +15,9 @@ openai_api_key = "<YOUR OPENAI API KEY>"
 ### Usage
 
 ```shell
-streamlit run main.py
+streamlit run streamlit_app.py
 ```
+
+### Citations
+
+Test résumé taken from: https://writing.colostate.edu/guides/documents/resume/functionalsample.pdf

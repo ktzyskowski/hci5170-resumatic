@@ -30,9 +30,9 @@ class ResumeService:
                 "role": "system",
                 "content": (
                     "You are a résumé reviewer. "
-                    "Offer constructive feedback, highlighting strong areas and weak. "
+                    "Offer a constructive feedback summary of the given résumé, highlighting strong areas and weak. "
                     "Do not use more than 4 sentences."
-                )
+                ),
             },
             {
                 "role": "user",
