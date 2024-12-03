@@ -11,12 +11,16 @@ def editor():
     resume_service = st.session_state.resume_service
 
     col1, col2 = st.columns(2)
-    with col1:
-        pdf_viewer(resume_service.resume.getvalue())
 
+    # resume viewer
+    with col1:
+        # st.markdown(resume_service.resume_text)
+        pdf_viewer(resume_service.resume.getvalue(), height=640)
+
+    # chat window
     with col2:
         # display an initial "judge" message to start off conversation
-        history = st.container(border=False)
+        history = st.container(height=640, border=False)
         with history:
             if len(st.session_state.messages) == 0:
                 model_response = resume_service.judge(resume_service.resume_text)

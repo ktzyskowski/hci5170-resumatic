@@ -1,6 +1,6 @@
 import streamlit as st
 
-from resumatic.streamlit.components import editor, options_expander, upload_resume_modal
+from resumatic.streamlit.components import editor, feedback, options_expander, upload_resume_modal, sidebar
 
 
 def app():
@@ -10,5 +10,8 @@ def app():
     if "resume_service" not in st.session_state:
         upload_resume_modal()
     else:
-        options_expander()
+        sidebar()
         editor()
+
+        st.divider()
+        feedback()
