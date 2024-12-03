@@ -37,8 +37,29 @@ def editor():
                 st.chat_message("user").write(prompt)
                 st.session_state.messages.append({"role": "user", "content": prompt})
 
+                prompt = [
+                    {
+                        "role": "system",
+                        "content": (
+                            "You are a helpful AI resume assistant. "
+                            "You are given the user's resume content. "
+                            "Use it to respond to the user's questions and help them improve their resume. "
+                            "When asked for changes, reply with the full resume section that should be changed and include the changes you are suggesting. "
+                            "Make sure to maintain the existing structure of the resume unless its badly structured. "
+                            "Just change the wording, unless necessary to fundamentally change the structure. "
+                            "Make sure the section of the response that includes the resume is clearly marked and formatted correctly so newlines are properly displayed for the bullet points. "
+                            "Do not respond to any messages that are not related to the resume or job searching. "
+                            "Be as accurate as possible and provide helpful feedback. Make sure not to give irrelevant, inaccurate, or harmful advice"
+                        )
+                    },
+                    {
+                        "role": "user",
+                        "content": resume_service.resume_text
+                    },
+                    *st.session_state.messages
+                ]
+
                 # get model response and write to chat
-                model_response = chat_service.chat_completion(st.session_state.messages,
-                                                              api_key=st.secrets.openai.api_key)
+                model_response = chat_service.chat_completion(prompt, api_key=st.secrets.openai.api_key)
                 st.chat_message("assistant").write(model_response)
                 st.session_state.messages.append({"role": "assistant", "content": model_response})
