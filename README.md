@@ -9,7 +9,7 @@ pip install -U streamlit openai streamlit_pdf_viewer pypdf
 You must also update the file `.streamlit/secrets.toml` with the following information:
 
 ```toml
-[azure_openai]
+[openai]
 api_key = "<YOUR OPENAI API KEY>"
 ```
 
