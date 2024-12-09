@@ -3,17 +3,22 @@
 ### Install
 
 ```shell
-pip install -U streamlit openai
+pip install -U streamlit openai streamlit_pdf_viewer pypdf
 ```
 
-You must also create a file `.streamlit/secrets.toml` file with the following information:
+You must also update the file `.streamlit/secrets.toml` with the following information:
 
 ```toml
-openai_api_key = "<YOUR OPENAI API KEY>"
+[azure_openai]
+api_key = "<YOUR OPENAI API KEY>"
 ```
 
 ### Usage
 
 ```shell
-streamlit run streamlit_app.py
+streamlit run main.py
 ```
+
+### Citations
+
+Test résumé taken from: https://writing.colostate.edu/guides/documents/resume/functionalsample.pdf
